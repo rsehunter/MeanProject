@@ -8,6 +8,8 @@ import { Post } from "./post.model";
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
+  private photos: string[] = [];
+  private photosUpdated = new Subject<string[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +22,22 @@ export class PostsService {
         this.posts = postData.posts;
         this.postsUpdated.next([...this.posts]);
       });
+  }
+
+  getPhotos() {
+    this.http
+      .get<{message: string; photos: string[] }>(
+        "http://localhost:3000/api/photos"
+      )
+      .subscribe(photoData => {
+        this.photos = photoData.photos;
+        this.photosUpdated.next([...this.photos]);
+
+      });
+  }
+
+  getPhotoUpdateListener() {
+    return this.photosUpdated.asObservable();
   }
 
   getPostUpdateListener() {
