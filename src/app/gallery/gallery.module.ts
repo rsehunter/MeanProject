@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatGridListModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule
 } from "@angular/material";
 import { GalleryComponent } from "./gallery.component";
+import { PhotoDialogComponent } from "./photoDialog/photoDialog.component";
 
 @NgModule({
   imports: [
     CommonModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   exports: [
     GalleryComponent

@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 
 import { Post } from "./post.model";
+import {environment} from '../../environments/environment'
+const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
@@ -16,7 +18,7 @@ export class PostsService {
   getPosts() {
     this.http
       .get<{ message: string; posts: Post[] }>(
-        "http://localhost:3000/api/posts"
+        BACKEND_URL + "/posts"
       )
       .subscribe(postData => {
         this.posts = postData.posts;
@@ -27,7 +29,7 @@ export class PostsService {
   getPhotos() {
     this.http
       .get<{message: string; photos: string[] }>(
-        "http://localhost:3000/api/photos"
+        BACKEND_URL + "/photos"
       )
       .subscribe(photoData => {
         this.photos = photoData.photos;
@@ -47,7 +49,7 @@ export class PostsService {
   addPost(title: string, content: string) {
     const post: Post = { id: null, title: title, content: content };
     this.http
-      .post<{ message: string }>("http://localhost:3000/api/posts", post)
+      .post<{ message: string }>(BACKEND_URL + "/posts", post)
       .subscribe(responseData => {
         console.log(responseData.message);
         this.posts.push(post);

@@ -16,7 +16,7 @@ const posts = [
 ];
 
 const photos = [];
-for(let i = 1; i<16; i++){
+for(var i = 1; i<15; i++){
   photos.push(i)
 
 }
