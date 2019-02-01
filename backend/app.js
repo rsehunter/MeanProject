@@ -9,10 +9,10 @@ const app = express();
 
 //mongo.exe "mongodb+srv://louis:nteCj8v0yYN2uG7X@cluster0-7jxdb.mongodb.net/test?retryWrites=true"
 mongoose.connect("mongodb+srv://louis:nteCj8v0yYN2uG7X@cluster0-7jxdb.mongodb.net/test?retryWrites=true")
-  .then(()=>{
+  .then(() => {
     console.log("connected to MongoDB!")
   })
-  .catch(()=>{
+  .catch(() => {
     console.log("connection failed!")
   });
 
@@ -38,7 +38,7 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  post.save().then(result =>{
+  post.save().then(result => {
     res.status(201).json({
       message: 'Post added successfully',
       postId: result._id
@@ -46,7 +46,7 @@ app.post("/api/posts", (req, res, next) => {
   });
 });
 
-app.post("/api/photos",(req, res, next) =>{
+app.post("/api/photos", (req, res, next) => {
   const photo = new Photo({
     caption: req.body.caption,
     location: req.body.location,
@@ -61,13 +61,20 @@ app.post("/api/photos",(req, res, next) =>{
 })
 
 app.delete("/api/posts/:id", (req, res, next) => {
-
-  Post.deleteOne({_id:req.params.id}).then(result =>{
+  Post.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
+    res.status(200).json({
+      message: req.params.id
+    })
   })
+});
 
-  res.status(200).json({
-    message: req.params.id 
+app.delete("/api/photos/:id", (req, res, next) => {
+  Photo.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: req.params.id
+    })
   })
 });
 
@@ -78,9 +85,21 @@ app.delete("/api/posts/:id", (req, res, next) => {
 //   });
 // });
 
+app.get("/api/photos/:photoId", (req, res, next) => {
+  console.log(req.params.photoId);
+  Photo.findOne({ _id: req.params.photoId })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    }).catch((error) => {
+      console.log(error);
+    })
+});
+
+
 app.get("/api/photos", (req, res, next) => {
   Photo.find()
-    .then((photos)=>{
+    .then((photos) => {
       console.log(photos);
       res.status(200).json({
         message: "Posts fetched successfully!",
@@ -92,13 +111,13 @@ app.get("/api/photos", (req, res, next) => {
 
 app.get("/api/posts", (req, res, next) => {
   Post.find()
-    .then(docs=>{
+    .then(docs => {
       console.log(docs);
       res.status(200).json({
         message: "Posts fetched successfully!",
         posts: docs
       });
-    
+
     });
 
 });

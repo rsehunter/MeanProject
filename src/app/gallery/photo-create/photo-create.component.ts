@@ -14,32 +14,46 @@ export class PhotoCreateComponent implements OnInit {
   enteredTitle = "";
   enteredContent = "";
   imageUrl = ""
-  photos = [1,2,3,4,5,6,7,8,9,10];
+  photos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   photo: Photo;
-  private mode ="create";
-  private photoId : string;
+  isLoading = false;
+
+
+  private mode = "create";
+  private photoId: string;
 
   constructor(
     public photosService: PostsService,
     public route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((paramMap: ParamMap) =>{
-      if (paramMap.has("photoId")){
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has("photoId")) {
+        this.isLoading = true;
+        this.photosService.getPhoto(paramMap.get("photoId")).subscribe(photoData => {
+          this.isLoading = false;
+          this.photo = {
+            id: photoData._id,
+            caption: photoData.caption,
+            location: photoData.location,
+            url: photoData.url
+          }
+          this.imageUrl = "./assets/" + photoData.url + ".jpg";
+        })
+      }
+      else {
         this.photo = {
-          id: paramMap.get("photoId"),
-          caption:paramMap.get("photoId"),
-          location: paramMap.get("photoId"),
-          url: paramMap.get("photoId")
+          id: null,
+          caption: null,
+          location: null,
+          url: null
         }
-      }else{
-        console.log("no")
       }
     })
   }
-  onImagePicked(event: Event) {
-    this.imageUrl = "./assets/"+ event.value + ".jpg";
+  onImagePicked() {
+    this.imageUrl = "./assets/" + this.photo.url + ".jpg";
     console.log(this.imageUrl);
   }
 
@@ -47,7 +61,8 @@ export class PhotoCreateComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.photosService.addPhoto(form.value.caption, form.value.location, this.imageUrl);
+    this.photosService.addPhoto(form.value.caption, form.value.location, form.value.url);
     form.resetForm();
+    this.imageUrl = ""
   }
 }

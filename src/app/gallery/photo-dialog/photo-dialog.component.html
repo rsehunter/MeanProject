@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>Hi </h1>
 <div mat-dialog-content>
-    <img class="dialog-img" src={{photo.url}} />
+    <img class="dialog-img" src={{convertUrl(photo.url)}} />
     <div mat-dialog-actions>
-        <a mat-button [routerLink]="['/edit', photo.id]">Edit</a>
-        <button mat-button (click)="onNoClick()">Close</button>
-        <button mat-button (click)="onNoClick()">Delete</button>
+        <a mat-button (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">Edit</a>
+        <button mat-button (click)="onDeleteClick(photo.id)">Delete</button>
+        <button mat-button (click)="onCloseClick()">Close</button>
     </div>
 </div>

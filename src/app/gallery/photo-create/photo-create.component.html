@@ -16,9 +16,9 @@
           name="url" 
           required
           placeholder="Photo Id"
-          ngModel
           #url="ngModel"
-          (selectionChange)="onImagePicked($event)">
+          [(ngModel)]="photo.url"
+          (selectionChange)="onImagePicked()">
           <mat-option *ngFor="let id of photos" [value]="id">{{id}}</mat-option>
         </mat-select>
         <mat-hint align="end">select an image to add to gallery</mat-hint>
@@ -33,7 +33,7 @@
         placeholder="Photo Location"
         #location="ngModel">
     </mat-form-field>
-    <div class="image-preview" *ngIf="url && url !== '' ">
+    <div class="image-preview" *ngIf="this.imageUrl">
         <img [src]="imageUrl" [alt]="imageUrl">
       </div>
   

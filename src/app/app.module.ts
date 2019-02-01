@@ -37,5 +37,5 @@ import {
   entryComponents: [PhotoDialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 

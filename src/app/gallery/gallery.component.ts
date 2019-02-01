@@ -1,4 +1,4 @@
-import { Component, OnInit   } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from "../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -13,14 +13,14 @@ import { Photo } from './photo.model';
 })
 export class GalleryComponent implements OnInit {
 
-  public photos: string[] =[];
+  public photos: string[] = [];
   private photoSub: Subscription;
 
   constructor(public postsService: PostsService,
     public dialog: MatDialog,
     private overlay: Overlay) { }
 
-  
+
   ngOnInit() {
     this.postsService.getPhotos();
     // this.photoSub = this.postsService.getPhotoUpdateListener()
@@ -34,7 +34,7 @@ export class GalleryComponent implements OnInit {
     this.photoSub.unsubscribe();
   }
 
-  openDialog(photoUrl: string): void{
+  openDialog(photoUrl: string): void {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
 
     const dialogRef = this.dialog.open(PhotoDialogComponent, {

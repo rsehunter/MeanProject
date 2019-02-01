@@ -1,4 +1,4 @@
-import { Component, OnInit   } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from "../../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -13,27 +13,27 @@ import { Photo } from '../photo.model';
 })
 export class PhotoListComponent implements OnInit {
 
-  public photos: Photo[] =[];
+  public photos: Photo[] = [];
   private photoSub: Subscription;
 
   constructor(public postsService: PostsService,
     public dialog: MatDialog,
     private overlay: Overlay) { }
 
-  
+
   ngOnInit() {
     this.postsService.getPhotos();
     this.photoSub = this.postsService.getPhotoUpdateListener()
-      .subscribe((photos: Photo[]) =>{
+      .subscribe((photos: Photo[]) => {
         this.photos = photos;
-    })
+      })
   };
 
   ngOnDestroy() {
     this.photoSub.unsubscribe();
   }
 
-  openDialog(photo: Photo): void{
+  openDialog(photo: Photo): void {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
 
     const dialogRef = this.dialog.open(PhotoDialogComponent, {
@@ -44,7 +44,10 @@ export class PhotoListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
 
+  convertUrl(url: string): string {
+    return "./assets/" + url + ".jpg";
   }
 }
 

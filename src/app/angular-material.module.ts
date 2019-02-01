@@ -24,4 +24,4 @@ import {
     MatSelectModule
   ]
 })
-export class AngularMaterialModule {}
+export class AngularMaterialModule { }
