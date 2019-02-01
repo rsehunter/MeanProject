@@ -2,8 +2,9 @@ import { Component, OnInit   } from '@angular/core';
 import { PostsService } from "../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { PhotoDialogComponent } from './photoDialog/photoDialog.component';
+import { PhotoDialogComponent } from './photo-dialog/photo-dialog.component';
 import { Overlay } from '@angular/cdk/overlay';
+import { Photo } from './photo.model';
 
 @Component({
   selector: 'app-gallery',
@@ -12,8 +13,8 @@ import { Overlay } from '@angular/cdk/overlay';
 })
 export class GalleryComponent implements OnInit {
 
-  public photosUrl: string[] =[];
-  private postsSub: Subscription;
+  public photos: Photo[] =[];
+  private photoSub: Subscription;
 
   constructor(public postsService: PostsService,
     public dialog: MatDialog,
@@ -22,14 +23,14 @@ export class GalleryComponent implements OnInit {
   
   ngOnInit() {
     this.postsService.getPhotos();
-    this.postsSub = this.postsService.getPhotoUpdateListener()
-      .subscribe((urls:string[]) =>{
-        this.photosUrl = urls.map((item) => { return `../assets/${item}.jpg` });;
+    this.photoSub = this.postsService.getPhotoUpdateListener()
+      .subscribe((photos: Photo[]) =>{
+        this.photos = photos;
     })
-  }
+  };
 
   ngOnDestroy() {
-    this.postsSub.unsubscribe();
+    this.photoSub.unsubscribe();
   }
 
   openDialog(photoUrl: string): void{

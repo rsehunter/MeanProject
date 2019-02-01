@@ -16,8 +16,8 @@ import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { HeaderComponent } from "./header/header.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GalleryModule } from "./gallery/gallery.module";
-import { PhotoDialogComponent } from "./gallery/photoDialog/photoDialog.component";
-import { GalleryComponent } from "./gallery/gallery.component";
+import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
+import { AppRoutingModule } from './app-rounting.module'
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { GalleryComponent } from "./gallery/gallery.component";
     MatExpansionModule,
     HttpClientModule,
     GalleryModule,
+    AppRoutingModule
   ],
   providers: [],
   entryComponents: [ PhotoDialogComponent],

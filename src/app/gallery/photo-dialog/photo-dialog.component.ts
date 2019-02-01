@@ -3,11 +3,10 @@ import { PostsService } from "../../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-
 @Component({
   selector: 'photo-dialog',
-  templateUrl: 'photoDialog.html',
-  styleUrls: ['./photoDialog.component.css']
+  templateUrl: 'photo-dialog.component.html',
+  styleUrls: ['./photo-dialog.component.css']
 })
 export class PhotoDialogComponent {
 
