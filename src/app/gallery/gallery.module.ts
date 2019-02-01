@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatGridListModule,
-  MatCardModule,
-  MatDialogModule
-} from "@angular/material";
+import { FormsModule } from "@angular/forms";
+import { AngularMaterialModule } from "../angular-material.module";
 import { GalleryComponent } from "./gallery.component";
-import { PhotoDialogComponent } from "./photoDialog/photoDialog.component";
+import { PhotoListComponent} from './photo-list/photo-list.component';
+import { PhotoCreateComponent} from './photo-create/photo-create.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDialogModule
+    FormsModule,
+    AngularMaterialModule
   ],
   exports: [
-    GalleryComponent
+    GalleryComponent, PhotoListComponent, PhotoCreateComponent
   ],
-  declarations: [GalleryComponent]
+  declarations: [GalleryComponent, PhotoListComponent, PhotoCreateComponent]
 })
 export class GalleryModule { }

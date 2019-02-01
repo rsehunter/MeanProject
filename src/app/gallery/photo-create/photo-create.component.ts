@@ -8,7 +8,7 @@ import { PostsService } from "../../posts/posts.service";
   templateUrl: "./photo-create.component.html",
   styleUrls: ["./photo-create.component.css"]
 })
-export class PostCreateComponent {
+export class PhotoCreateComponent {
   enteredTitle = "";
   enteredContent = "";
 

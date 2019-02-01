@@ -1,17 +1,17 @@
 import { Component, OnInit   } from '@angular/core';
-import { PostsService } from "../posts/posts.service";
+import { PostsService } from "../../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { PhotoDialogComponent } from './photo-dialog/photo-dialog.component';
+import { PhotoDialogComponent } from '../photo-dialog/photo-dialog.component';
 import { Overlay } from '@angular/cdk/overlay';
-import { Photo } from './photo.model';
+import { Photo } from '../photo.model';
 
 @Component({
-  selector: 'app-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  selector: 'app-photo-list',
+  templateUrl: './photo-list.component.html',
+  styleUrls: ['./photo-list.component.css']
 })
-export class GalleryComponent implements OnInit {
+export class PhotoListComponent implements OnInit {
 
   public photos: string[] =[];
   private photoSub: Subscription;
@@ -25,7 +25,6 @@ export class GalleryComponent implements OnInit {
     this.postsService.getPhotos();
     this.photoSub = this.postsService.getPhotoUpdateListener()
       .subscribe((photos: string[]) =>{
-        console.log(photos)
         this.photos = photos;
     })
   };

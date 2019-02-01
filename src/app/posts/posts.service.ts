@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 
 import { Post } from "./post.model";
-import { Photo } from "../gallery/photo.model";
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 const BACKEND_URL = environment.apiUrl;
@@ -12,8 +11,8 @@ const BACKEND_URL = environment.apiUrl;
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
-  private photos: Photo[] = [];
-  private photosUpdated = new Subject<Photo[]>();
+  private photos: string[] = [];
+  private photosUpdated = new Subject<string[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -25,8 +24,9 @@ export class PostsService {
       .pipe(map((postData)=>{
         return postData.posts.map(post =>{
           return {
-            id: post._id,
-            ...post
+            title: post.title,
+            content: post.content,
+            id: post._id
           };
         });
       }))
@@ -48,17 +48,9 @@ export class PostsService {
 
   getPhotos() {
     this.http
-      .get<{message: string; photos: any }>(
+      .get<{message: string; photos: string[] }>(
         BACKEND_URL + "/photos"
       )
-      .pipe(map((photoData)=>{
-        return photoData.photos.map(photo =>{
-          return {
-            id: photo._id,
-            ...photo
-          };
-        });
-      }))
       .subscribe(photoData => {
         this.photos = photoData.photos;
         this.photosUpdated.next([...this.photos]);
@@ -83,20 +75,6 @@ export class PostsService {
         post.id = responseData.postId;
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
-      });
+      });  
   }
-
-  addPhoto(url: string, caption: string, location: string) {
-    const photo: Photo = { id: null, url: url, caption: caption, location: location };
-    this.http
-      .post<{ message: string, photoId: string }>(BACKEND_URL + "/photos", photo)
-      .subscribe(responseData => {
-        console.log(responseData.message);
-        photo.id = responseData.photoId;
-        this.photos.push(photo);
-        this.photosUpdated.next([...this.photos]);
-      });
-  }
-
-
 }

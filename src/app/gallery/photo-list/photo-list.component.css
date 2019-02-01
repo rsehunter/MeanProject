@@ -1,0 +1,27 @@
+:host {
+    display: block;
+    margin-top: 1rem;
+} 
+.img-container {
+  overflow: hidden;
+}
+
+.img {
+  width:100%;
+  min-height:100%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1em;
+}
+
+.img:hover {
+  box-shadow: lightgray 5px 5px 10px;
+  cursor: pointer;
+}
+
+.dialog-img {
+  width:100%;
+
+}

@@ -3,14 +3,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import {
-  MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatExpansionModule
-} from "@angular/material";
-
 import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { HeaderComponent } from "./header/header.component";
@@ -18,6 +10,7 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GalleryModule } from "./gallery/gallery.module";
 import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
 import { AppRoutingModule } from './app-rounting.module'
+import { AngularMaterialModule } from "./angular-material.module";
 
 @NgModule({
   declarations: [
@@ -31,14 +24,10 @@ import { AppRoutingModule } from './app-rounting.module'
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatExpansionModule,
     HttpClientModule,
     GalleryModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularMaterialModule
   ],
   providers: [],
   entryComponents: [ PhotoDialogComponent],
