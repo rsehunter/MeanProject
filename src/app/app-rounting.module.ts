@@ -6,10 +6,11 @@ import { PhotoListComponent} from './gallery/photo-list/photo-list.component';
 import { PhotoCreateComponent} from './gallery/photo-create/photo-create.component';
 
 const routes: Routes = [
-    { path: '', component: PostListComponent },
+    { path: '', component: PhotoListComponent },
     { path: 'createphoto', component: PhotoCreateComponent },
+    { path: "edit/:photoId", component: PhotoCreateComponent},
     { path: 'create', component: PostCreateComponent },
-    { path: 'gallery', component: PhotoListComponent },
+    { path: 'list', component:PostListComponent  },
 ];
 
 @NgModule({

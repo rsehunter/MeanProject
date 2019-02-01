@@ -1,31 +1,46 @@
 <mat-card>
-  <form (submit)="onAddPost(photoForm)" #postForm="ngForm">
+  <form (submit)="onAddPost(photoForm)" #photoForm="ngForm">
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="1"
+        name="caption"
+        [(ngModel)]="photo.caption"
+        required
+        placeholder="Photo Caption"
+        #caption="ngModel"></textarea>
+      <mat-error *ngIf="caption.invalid">Please enter caption.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select 
+          name="url" 
+          required
+          placeholder="Photo Id"
+          ngModel
+          #url="ngModel"
+          (selectionChange)="onImagePicked($event)">
+          <mat-option *ngFor="let id of photos" [value]="id">{{id}}</mat-option>
+        </mat-select>
+        <mat-hint align="end">select an image to add to gallery</mat-hint>
+      </mat-form-field>
     <mat-form-field>
       <input
         matInput
         type="text"
-        name="title"
+        name="location"
+        [(ngModel)]="photo.location"
         ngModel
-        required
-        minlength="3"
-        placeholder="Post Title"
-        #title="ngModel">
-      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
+        placeholder="Photo Location"
+        #location="ngModel">
     </mat-form-field>
-    <mat-form-field>
-      <textarea
-        matInput
-        rows="4"
-        name="content"
-        ngModel
-        required
-        placeholder="Post Content"
-        #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
-    </mat-form-field>
+    <div class="image-preview" *ngIf="url && url !== '' ">
+        <img [src]="imageUrl" [alt]="imageUrl">
+      </div>
+  
     <button
       mat-raised-button
       color="accent"
+      [disabled]="!photoForm.form.valid"
       type="submit">Save Photo</button>
   </form>
 </mat-card>

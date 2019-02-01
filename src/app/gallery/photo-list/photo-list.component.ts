@@ -13,7 +13,7 @@ import { Photo } from '../photo.model';
 })
 export class PhotoListComponent implements OnInit {
 
-  public photos: string[] =[];
+  public photos: Photo[] =[];
   private photoSub: Subscription;
 
   constructor(public postsService: PostsService,
@@ -24,7 +24,7 @@ export class PhotoListComponent implements OnInit {
   ngOnInit() {
     this.postsService.getPhotos();
     this.photoSub = this.postsService.getPhotoUpdateListener()
-      .subscribe((photos: string[]) =>{
+      .subscribe((photos: Photo[]) =>{
         this.photos = photos;
     })
   };
@@ -33,12 +33,11 @@ export class PhotoListComponent implements OnInit {
     this.photoSub.unsubscribe();
   }
 
-  openDialog(photoUrl: string): void{
+  openDialog(photo: Photo): void{
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
 
     const dialogRef = this.dialog.open(PhotoDialogComponent, {
-      width: '80%',
-      data: photoUrl,
+      data: photo,
       scrollStrategy,
       autoFocus: false
     });

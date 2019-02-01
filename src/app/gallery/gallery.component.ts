@@ -23,11 +23,11 @@ export class GalleryComponent implements OnInit {
   
   ngOnInit() {
     this.postsService.getPhotos();
-    this.photoSub = this.postsService.getPhotoUpdateListener()
-      .subscribe((photos: string[]) =>{
-        console.log(photos)
-        this.photos = photos;
-    })
+    // this.photoSub = this.postsService.getPhotoUpdateListener()
+    //   .subscribe((photos: string[]) =>{
+    //     console.log(photos)
+    //     this.photos = photos;
+    // })
   };
 
   ngOnDestroy() {

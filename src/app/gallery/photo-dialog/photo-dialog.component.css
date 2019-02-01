@@ -3,3 +3,7 @@
   width:100%;
 
 }
+.mat-dialog-content{
+  max-height: 100%;
+  overflow: hidden;
+}

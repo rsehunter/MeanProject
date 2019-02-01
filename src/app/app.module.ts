@@ -11,6 +11,9 @@ import { GalleryModule } from "./gallery/gallery.module";
 import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
 import { AppRoutingModule } from './app-rounting.module'
 import { AngularMaterialModule } from "./angular-material.module";
+import {
+  MatDialogModule,
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -27,10 +30,11 @@ import { AngularMaterialModule } from "./angular-material.module";
     HttpClientModule,
     GalleryModule,
     AppRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatDialogModule
   ],
   providers: [],
-  entryComponents: [ PhotoDialogComponent],
+  entryComponents: [PhotoDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

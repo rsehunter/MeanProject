@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 
 import { Post } from "./post.model";
+import { Photo } from "../gallery/photo.model";
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 const BACKEND_URL = environment.apiUrl;
@@ -11,8 +12,8 @@ const BACKEND_URL = environment.apiUrl;
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
-  private photos: string[] = [];
-  private photosUpdated = new Subject<string[]>();
+  private photos: Photo[] = [];
+  private photosUpdated = new Subject<Photo[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -48,12 +49,27 @@ export class PostsService {
 
   getPhotos() {
     this.http
-      .get<{message: string; photos: string[] }>(
+      .get<{message: string; photos: any }>(
         BACKEND_URL + "/photos"
+      )
+      .pipe(
+        map(photoData => {
+          return {
+            photos: photoData.photos.map(photo => {
+              return {
+                caption: photo.caption,
+                location: photo.location,
+                url: photo.url,
+                id: photo._id,
+              };
+            }),
+          };
+        })
       )
       .subscribe(photoData => {
         this.photos = photoData.photos;
         this.photosUpdated.next([...this.photos]);
+        console.log(this.photos)
 
       });
   }
@@ -75,6 +91,19 @@ export class PostsService {
         post.id = responseData.postId;
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
+      });  
+  }
+
+  addPhoto(caption: string, location: string, url:string) {
+
+    const photo: Photo = { id: null, caption: caption, location: location, url: url };
+    this.http
+      .post<{ message: string, photoId: string }>(BACKEND_URL + "/photos", photo)
+      .subscribe(responseData => {
+        console.log(responseData.message);
+        photo.id = responseData.photoId;
+        this.photos.push(photo);
+        this.photosUpdated.next([...this.photos]);
       });  
   }
 }

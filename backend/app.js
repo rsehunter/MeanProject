@@ -16,12 +16,6 @@ mongoose.connect("mongodb+srv://louis:nteCj8v0yYN2uG7X@cluster0-7jxdb.mongodb.ne
     console.log("connection failed!")
   });
 
-const photos = [];
-for(var i = 1; i<15; i++){
-  photos.push(i)
-
-}
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -49,10 +43,22 @@ app.post("/api/posts", (req, res, next) => {
       message: 'Post added successfully',
       postId: result._id
     });
-  
   });
-
 });
+
+app.post("/api/photos",(req, res, next) =>{
+  const photo = new Photo({
+    caption: req.body.caption,
+    location: req.body.location,
+    url: req.body.url
+  });
+  photo.save().then(result => {
+    res.status(201).json({
+      message: 'Photo added successfully',
+      photoId: result._id
+    })
+  })
+})
 
 app.delete("/api/posts/:id", (req, res, next) => {
 
@@ -65,20 +71,20 @@ app.delete("/api/posts/:id", (req, res, next) => {
   })
 });
 
-app.get("/api/photos", (req, res, next) => {
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    photos: photos
-  });
-});
+// app.get("/api/photos", (req, res, next) => {
+//   res.status(200).json({
+//     message: "Posts fetched successfully!",
+//     photos: photos
+//   });
+// });
 
-app.get("/api/newphotos", (req, res, next) => {
+app.get("/api/photos", (req, res, next) => {
   Photo.find()
     .then((photos)=>{
       console.log(photos);
       res.status(200).json({
         message: "Posts fetched successfully!",
-        photos: photo
+        photos: photos
       });
     })
 });
