@@ -18,9 +18,7 @@ export class PhotoCreateComponent implements OnInit {
   photo: Photo;
   isLoading = false;
 
-
   private mode = "create";
-  private photoId: string;
 
   constructor(
     public photosService: PostsService,
@@ -31,6 +29,7 @@ export class PhotoCreateComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("photoId")) {
         this.isLoading = true;
+        this.mode = "update";
         this.photosService.getPhoto(paramMap.get("photoId")).subscribe(photoData => {
           this.isLoading = false;
           this.photo = {
@@ -61,8 +60,19 @@ export class PhotoCreateComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.photosService.addPhoto(form.value.caption, form.value.location, form.value.url);
+    if (this.mode === "create"){
+      this.photosService.createPhoto(
+        form.value.caption, 
+        form.value.location, 
+        form.value.url);  
+    } else {
+      this.photosService.updatePhoto(
+        this.photo.id,
+        form.value.caption, 
+        form.value.location, 
+        form.value.url);  
+    };
     form.resetForm();
-    this.imageUrl = ""
+    this.imageUrl = "";
   }
 }

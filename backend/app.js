@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST,PUT, PATCH, DELETE, OPTIONS"
   );
   next();
 });
@@ -85,6 +85,25 @@ app.delete("/api/photos/:id", (req, res, next) => {
 //   });
 // });
 
+app.put("/api/photos/:photoId", (req, res, next) => {
+  console.log(req.params.photoId);
+
+  const photo = new Photo({
+    _id: req.body.id,
+    caption: req.body.caption,
+    location: req.body.location,
+    url: req.body.url
+  });
+
+  Photo.updateOne({ _id: req.params.photoId }, photo)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ message: "Update successful!" });
+    }).catch((error) => {
+      console.log(error);
+    })
+});
+
 app.get("/api/photos/:photoId", (req, res, next) => {
   console.log(req.params.photoId);
   Photo.findOne({ _id: req.params.photoId })
@@ -95,7 +114,6 @@ app.get("/api/photos/:photoId", (req, res, next) => {
       console.log(error);
     })
 });
-
 
 app.get("/api/photos", (req, res, next) => {
   Photo.find()
@@ -108,7 +126,6 @@ app.get("/api/photos", (req, res, next) => {
     })
 });
 
-
 app.get("/api/posts", (req, res, next) => {
   Post.find()
     .then(docs => {
@@ -117,9 +134,8 @@ app.get("/api/posts", (req, res, next) => {
         message: "Posts fetched successfully!",
         posts: docs
       });
-
     });
-
 });
+
 
 module.exports = app;

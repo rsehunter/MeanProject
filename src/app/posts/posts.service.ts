@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
+import { Router } from "@angular/router";
 
 import { Post } from "./post.model";
 import { Photo } from "../gallery/photo.model";
@@ -15,7 +16,7 @@ export class PostsService {
   private photos: Photo[] = [];
   private photosUpdated = new Subject<Photo[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getPosts() {
     this.http
@@ -111,8 +112,7 @@ export class PostsService {
       });
   }
 
-  addPhoto(caption: string, location: string, url: string) {
-
+  createPhoto(caption: string, location: string, url: string) {
     const photo: Photo = { id: null, caption: caption, location: location, url: url };
     this.http
       .post<{ message: string, photoId: string }>(BACKEND_URL + "/photos", photo)
@@ -121,6 +121,18 @@ export class PostsService {
         photo.id = responseData.photoId;
         this.photos.push(photo);
         this.photosUpdated.next([...this.photos]);
+      });
+  }
+
+  updatePhoto(id: string, caption: string, location: string, url: string) {
+    const photo: Photo = { id: id, caption: caption, location: location, url: url };
+    console.log(photo);
+
+    this.http
+      .put(BACKEND_URL + "/photos/"+ id, photo)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.router.navigate(["/"]);
       });
   }
 }

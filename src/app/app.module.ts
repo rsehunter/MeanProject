@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-rounting.module'
 import { AngularMaterialModule } from "./angular-material.module";
 import {
   MatDialogModule,
+  MatCardModule
 } from "@angular/material";
 
 @NgModule({
@@ -31,7 +32,8 @@ import {
     GalleryModule,
     AppRoutingModule,
     AngularMaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   entryComponents: [PhotoDialogComponent],
