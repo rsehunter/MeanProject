@@ -1,6 +1,8 @@
 mat-card{
   position: relative;
+  overflow: hidden;
 }
+
 mat-form-field,
 textarea {
   width: 100%;

@@ -1,7 +1,7 @@
 :host {
     display: block;
-    margin-top: 1rem;
 } 
+
 .img-container {
   overflow: hidden;
 }
@@ -28,7 +28,9 @@
 
 mat-expansion-panel{
   margin: 0px 15px 20px 0px;
+  overflow: hidden;
 }
+
 .panel-title mat-icon, p {
   align-self: center;
   margin: 0px 5px;
