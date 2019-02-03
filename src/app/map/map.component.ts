@@ -94,26 +94,42 @@ export class MapComponent implements OnInit {
     }
 
 
-ngOnInit(): void {
-    this.uStatePaths.forEach((d) => {
-        var low = Math.round(100 * Math.random());
-        this.sampleData[d.id] = {
-            color: d3.interpolate("#d8d6d6", "#9a9899")(low / 100)
-        };
-    });
-    d3.select(this.statesvgElt.nativeElement).selectAll(".state")
-        .data(this.uStatePaths).enter().append("path").attr("class", "state").attr("d", function (d) { return d.d; })
-        .style("fill", (d) => this.sampleData[d.id].color)
-        .on("mouseover", (d) => {
-            this.mouseOver(d)
-        })
-        .on("mouseout", () => this.mouseOut)
-        .on("click", (d) => {
-            this.locationSelected.emit(d.n);
+    ngOnInit(): void {
+        this.uStatePaths.forEach((d) => {
+            var low = Math.round(100 * Math.random());
+            this.sampleData[d.id] = {
+                color: d3.interpolate("#d8d6d6", "#9a9899")(low / 100)
+            };
         });
 
-    d3.select(self.frameElement).style("height", "600px");
 
-}
+        var svg = d3.select(this.statesvgElt.nativeElement),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+
+        var zoom = d3.zoom()
+            .scaleExtent([1, 40])
+            .translateExtent([[-100, -100], [width + 90, height + 100]])
+            .on("zoom", zoomed);
+
+        var view = d3.select(this.statesvgElt.nativeElement).selectAll(".state")
+            .data(this.uStatePaths).enter().append("path").attr("class", "state").attr("d", function (d) { return d.d; })
+            .style("fill", (d) => this.sampleData[d.id].color)
+            .on("mouseover", (d) => {
+                this.mouseOver(d)
+            })
+            .on("mouseout", () => this.mouseOut)
+            .on("click", (d) => {
+                this.locationSelected.emit(d.n);
+            });
+
+        svg.call(zoom);
+
+        function zoomed() {
+            view.attr("transform", d3.event.transform);
+        }
+        d3.select(self.frameElement).style("height", "600px");
+
+    }
 
 }

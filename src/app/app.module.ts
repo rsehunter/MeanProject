@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
-import { HeaderComponent } from "./header/header.component";
+import { WelcomeComponent } from "./welcome/welcome.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GalleryModule } from "./gallery/gallery.module";
 import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
@@ -16,8 +16,8 @@ import { AngularMaterialModule } from "./angular-material.module";
   declarations: [
     AppComponent,
     PostCreateComponent,
-    HeaderComponent,
     PostListComponent,
+    WelcomeComponent,
     PhotoDialogComponent,
   ],
   imports: [
@@ -27,7 +27,7 @@ import { AngularMaterialModule } from "./angular-material.module";
     HttpClientModule,
     GalleryModule,
     AppRoutingModule,
-    AngularMaterialModule  ],
+    AngularMaterialModule],
   providers: [],
   entryComponents: [PhotoDialogComponent],
   bootstrap: [AppComponent]
