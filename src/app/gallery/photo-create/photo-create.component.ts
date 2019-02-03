@@ -55,7 +55,9 @@ export class PhotoCreateComponent implements OnInit {
     this.imageUrl = "./assets/" + this.photo.url + ".jpg";
     console.log(this.imageUrl);
   }
-
+  onLocationSelected(location: string){
+    this.photo.location = location;
+  }
   onAddPost(form: NgForm) {
     if (form.invalid) {
       return;

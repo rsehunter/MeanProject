@@ -1,10 +1,14 @@
 <mat-card class='gallery'>
-  <mat-card-title>All</mat-card-title>
-  <mat-grid-list cols="3" rowHeight="1:1">
-    <mat-grid-tile *ngFor='let photoUrl of photosUrl' (click) = "openDialog(photoUrl)">
-      <div class="img-container">
-        <img class="img" src={{photoUrl}}>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class='panel-title'>
+          <mat-icon>map</mat-icon>
+          <p>{{title}}</p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <map (locationSelected)="onLocationSelected($event)"></map>
+
+  </mat-expansion-panel>
+
+  <photo-list></photo-list>
 </mat-card>

@@ -33,6 +33,8 @@
         placeholder="Photo Location"
         #location="ngModel">
     </mat-form-field>
+    <map (locationSelected)="onLocationSelected($event)"></map>
+
     <div class="image-preview" *ngIf="this.imageUrl">
         <img [src]="imageUrl" [alt]="imageUrl">
       </div>

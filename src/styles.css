@@ -5,3 +5,7 @@ body { margin: 0; }
 .cdk-overlay-container {
   overflow: scroll;
 }
+.mat-menu-panel{
+  max-width: unset !important;
+  min-width: unset !important;
+}

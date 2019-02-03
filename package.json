@@ -12,6 +12,10 @@
   },
   "private": true,
   "dependencies": {
+    "d3": "5.7.0",
+    "d3-queue": "3.0.7",
+    "topojson": "3.0.2",
+    "@types/d3": "5.0.0",
     "@angular/animations": "^6.0.0",
     "@angular/cdk": "^6.0.0",
     "@angular/common": "^6.0.0",

@@ -1,0 +1,25 @@
+.state {
+    stroke: #a9a9a9;
+    stroke-width: 1;
+}
+
+.state:hover {
+fill-opacity:0.5;
+}
+
+svg{
+    display: block;
+    margin: 20px auto;
+}
+.tooltip {   
+    position: absolute;           
+    text-align: center;
+    margin: 10px;
+    font: 18px sans-serif;        
+    background:rgba(0,0,0,0.9);
+    border:1px solid grey;
+    min-width:60px;
+    padding:4px;
+    color:white;
+    opacity:0;
+}

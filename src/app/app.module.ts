@@ -11,10 +11,6 @@ import { GalleryModule } from "./gallery/gallery.module";
 import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
 import { AppRoutingModule } from './app-rounting.module'
 import { AngularMaterialModule } from "./angular-material.module";
-import {
-  MatDialogModule,
-  MatCardModule
-} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -22,7 +18,7 @@ import {
     PostCreateComponent,
     HeaderComponent,
     PostListComponent,
-    PhotoDialogComponent
+    PhotoDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,10 +27,7 @@ import {
     HttpClientModule,
     GalleryModule,
     AppRoutingModule,
-    AngularMaterialModule,
-    MatDialogModule,
-    MatCardModule
-  ],
+    AngularMaterialModule  ],
   providers: [],
   entryComponents: [PhotoDialogComponent],
   bootstrap: [AppComponent]

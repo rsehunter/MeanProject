@@ -7,15 +7,15 @@ import { Overlay } from '@angular/cdk/overlay';
 import { Photo } from '../photo.model';
 
 @Component({
-  selector: 'app-photo-list',
+  selector: 'photo-list',
   templateUrl: './photo-list.component.html',
   styleUrls: ['./photo-list.component.css']
 })
 export class PhotoListComponent implements OnInit {
-
+ 
   public photos: Photo[] = [];
   private photoSub: Subscription;
-
+  public cols = 3;
   constructor(public postsService: PostsService,
     public dialog: MatDialog,
     private overlay: Overlay) { }

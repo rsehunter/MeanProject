@@ -1,10 +1,7 @@
-<mat-card class='gallery'>
-  <mat-card-title>All</mat-card-title>
-  <mat-grid-list cols="3" rowHeight="1:1">
-    <mat-grid-tile *ngFor='let photo of photos' (click)="openDialog(photo)">
-      <div class="img-container">
-        <img class="img" src={{convertUrl(photo.url)}}>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-</mat-card>
+<mat-grid-list [cols]="cols" rowHeight="1:1">
+  <mat-grid-tile *ngFor='let photo of photos' (click)="openDialog(photo)">
+    <div class="img-container">
+      <img class="img" src={{convertUrl(photo.url)}}>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

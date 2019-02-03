@@ -25,3 +25,12 @@
   width:100%;
 
 }
+
+mat-expansion-panel{
+  margin: 0px 15px 20px 0px;
+}
+.panel-title mat-icon, p {
+  align-self: center;
+  margin: 0px 5px;
+}
+
