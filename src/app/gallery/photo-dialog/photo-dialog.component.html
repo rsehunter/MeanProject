@@ -1,16 +1,39 @@
 <div mat-dialog-content>
     <mat-card>
         <img class="dialog-img" src={{convertUrl(photo.url)}} />
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{photo.caption}}</mat-card-title>
-            <mat-card-subtitle>{{photo.location}}</mat-card-subtitle>
-        </mat-card-header>
+        <div class="flex-container">
+
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{photo.caption}}</mat-card-title>
+                <mat-card-subtitle>{{photo.location}}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="flex-spacer"> </div>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="onDeleteClick(photo.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+                <button mat-menu-item (click)="onCloseClick()">
+                    <mat-icon>close</mat-icon>
+                    <span>Close</span>
+                </button>
+            </mat-menu>
+
+            <!-- 
+        <a mat-raised-button (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">Edit</a>
+        <button mat-raised-button (click)="onDeleteClick(photo.id)">Delete</button>
+        <button mat-raised-button (click)="onCloseClick()">Close</button> -->
+        </div>
+
     </mat-card>
-    <div mat-dialog-actions>
-        <a mat-button (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">Edit</a>
-        <button mat-button (click)="onDeleteClick(photo.id)">Delete</button>
-        <button mat-button (click)="onCloseClick()">Close</button>
-    </div>
 
 </div>

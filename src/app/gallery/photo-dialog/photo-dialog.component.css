@@ -7,3 +7,12 @@
   max-height: 100%;
   overflow: initial;
 }
+.flex-container{
+  display:flex;
+}
+.flex-spacer {
+  flex-grow: 1;
+}
+mat-card{
+  margin-bottom: 20px;
+}

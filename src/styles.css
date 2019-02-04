@@ -2,18 +2,17 @@
 
 body { margin: 0; }
 
-.cdk-overlay-container {
+/* .cdk-overlay-container {
   overflow: scroll;
-}
-
-.mat-menu-panel{
-  max-width: unset !important;
-  min-width: unset !important;
-}
-
+} */
 .main{
   max-width: 1300px;
   min-width: 600px;
   width:80%;
   margin: 0 auto;
+}
+
+.mat-dialog-container{
+
+  height: auto !important;
 }

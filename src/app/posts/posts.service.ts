@@ -121,6 +121,7 @@ export class PostsService {
         photo.id = responseData.photoId;
         this.photos.push(photo);
         this.photosUpdated.next([...this.photos]);
+        this.router.navigate(["/gallery"]);
       });
   }
 
@@ -132,7 +133,7 @@ export class PostsService {
       .put(BACKEND_URL + "/photos/"+ id, photo)
       .subscribe(responseData => {
         console.log(responseData);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/gallery"]);
       });
   }
 }
