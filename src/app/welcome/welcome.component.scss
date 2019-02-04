@@ -13,8 +13,10 @@
   height:100%; 
   width:100%;
   flex-direction: row;
-  clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
   z-index: -1;
+  clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+  animation-duration: 1.5s;
+  animation-name: slidein;
 
   .background-box {
     flex: 1 1;
@@ -35,6 +37,16 @@
   }
   .background-img4 {
     background-image:url("/assets/15.jpg")
+  }
+}
+
+@keyframes slidein {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 100vh, 0 100%);
+  }
+
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
   }
 }
 

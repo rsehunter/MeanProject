@@ -12,14 +12,15 @@ import { Photo } from '../photo.model';
   styleUrls: ['./photo-list.component.css']
 })
 export class PhotoListComponent implements OnInit {
- 
+
   public photos: Photo[] = [];
   private photoSub: Subscription;
   public cols = 3;
-  constructor(public postsService: PostsService,
+  constructor(
+    public postsService: PostsService,
     public dialog: MatDialog,
-    private overlay: Overlay) { }
-
+    private overlay: Overlay
+  ) { }
 
   ngOnInit() {
     this.postsService.getPhotos();

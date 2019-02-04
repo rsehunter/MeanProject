@@ -5,6 +5,7 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PhotoCreateComponent } from './gallery/photo-create/photo-create.component';
 import { GalleryComponent } from "./gallery/gallery.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
     { path: '', component: WelcomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: "edit/:photoId", component: PhotoCreateComponent },
     { path: 'create', component: PostCreateComponent },
     { path: 'list', component: PostListComponent },
+    { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

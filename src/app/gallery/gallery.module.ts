@@ -6,7 +6,6 @@ import { GalleryComponent } from "./gallery.component";
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoCreateComponent } from './photo-create/photo-create.component';
 import { MapComponent } from "../map/map.component";
-import { HeaderComponent } from "../header/header.component";
 import { AppRoutingModule } from '../app-rounting.module'
 
 @NgModule({
@@ -20,7 +19,6 @@ import { AppRoutingModule } from '../app-rounting.module'
     GalleryComponent, PhotoListComponent, PhotoCreateComponent
   ],
   declarations: [
-    HeaderComponent,
     MapComponent,
     GalleryComponent, 
     PhotoListComponent, 

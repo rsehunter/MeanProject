@@ -8,9 +8,11 @@ import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { GalleryModule } from "./gallery/gallery.module";
+import { AuthModule } from "./auth/auth.module";
 import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.component";
 import { AppRoutingModule } from './app-rounting.module'
 import { AngularMaterialModule } from "./angular-material.module";
+import { HeaderComponent } from "./header/header.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { AngularMaterialModule } from "./angular-material.module";
     PostListComponent,
     WelcomeComponent,
     PhotoDialogComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { AngularMaterialModule } from "./angular-material.module";
     HttpClientModule,
     GalleryModule,
     AppRoutingModule,
-    AngularMaterialModule],
+    AngularMaterialModule,
+    AuthModule
+  ],
   providers: [],
   entryComponents: [PhotoDialogComponent],
   bootstrap: [AppComponent]

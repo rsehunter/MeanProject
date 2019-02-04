@@ -16,10 +16,10 @@ export class PostsService {
   private photos: Photo[] = [];
   private photosUpdated = new Subject<Photo[]>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private _http: HttpClient, private _router: Router) { }
 
   getPosts() {
-    this.http
+    this._http
       .get<{ message: string; posts: any }>(
         BACKEND_URL + "/posts"
       )
@@ -39,7 +39,7 @@ export class PostsService {
   }
 
   deletePost(postId: string) {
-    this.http.delete<{ message: string }>(BACKEND_URL + "/posts/" + postId)
+    this._http.delete<{ message: string }>(BACKEND_URL + "/posts/" + postId)
       .subscribe(responseData => {
         console.log(responseData.message, "deleted!");
         const updatedPosts = this.posts.filter(post => post.id !== postId);
@@ -49,7 +49,7 @@ export class PostsService {
   }
 
   deletePhoto(photoId: string) {
-    this.http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
+    this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
       .subscribe(responseData => {
         console.log(responseData.message, "deleted!");
         const updatedPhotos = this.photos.filter(photo => photo.id !== photoId);
@@ -59,7 +59,7 @@ export class PostsService {
   }
 
   getPhotos() {
-    this.http
+    this._http
       .get<{ message: string; photos: any }>(BACKEND_URL + "/photos")
       .pipe(map(photoData => {
         return {
@@ -82,7 +82,7 @@ export class PostsService {
 
   getPhoto(photoid: string) {
     console.log(photoid);
-    return this.http
+    return this._http
       .get<{
         caption: string,
         location: string,
@@ -102,7 +102,7 @@ export class PostsService {
 
   addPost(title: string, content: string) {
     const post: Post = { id: null, title: title, content: content };
-    this.http
+    this._http
       .post<{ message: string, postId: string }>(BACKEND_URL + "/posts", post)
       .subscribe(responseData => {
         console.log(responseData.message);
@@ -114,14 +114,14 @@ export class PostsService {
 
   createPhoto(caption: string, location: string, url: string) {
     const photo: Photo = { id: null, caption: caption, location: location, url: url };
-    this.http
+    this._http
       .post<{ message: string, photoId: string }>(BACKEND_URL + "/photos", photo)
       .subscribe(responseData => {
         console.log(responseData.message);
         photo.id = responseData.photoId;
         this.photos.push(photo);
         this.photosUpdated.next([...this.photos]);
-        this.router.navigate(["/gallery"]);
+        this._router.navigate(["/gallery"]);
       });
   }
 
@@ -129,11 +129,11 @@ export class PostsService {
     const photo: Photo = { id: id, caption: caption, location: location, url: url };
     console.log(photo);
 
-    this.http
+    this._http
       .put(BACKEND_URL + "/photos/"+ id, photo)
       .subscribe(responseData => {
         console.log(responseData);
-        this.router.navigate(["/gallery"]);
+        this._router.navigate(["/gallery"]);
       });
   }
 }

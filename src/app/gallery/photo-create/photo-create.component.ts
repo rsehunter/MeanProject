@@ -22,11 +22,11 @@ export class PhotoCreateComponent implements OnInit {
 
   constructor(
     public photosService: PostsService,
-    public route: ActivatedRoute
+    public _route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+    this._route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("photoId")) {
         this.isLoading = true;
         this.mode = "update";

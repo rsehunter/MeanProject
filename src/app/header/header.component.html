@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="router!=='/'">
     <span>
         <a routerLink="/">Louis's Photo Journal</a>
     </span>
@@ -9,13 +9,10 @@
             <a mat-button routerLink="/gallery" routerLinkActive="mat-accent">Gallery</a>
         </li>
         <li>
-            <a mat-button routerLink="/create" routerLinkActive="mat-accent">Create</a>
-        </li>
-        <li>
             <a mat-button routerLink="/createphoto" routerLinkActive="mat-accent">CreatePhoto</a>
         </li>
         <li>
-            <a mat-button routerLink="/list" routerLinkActive="mat-accent">List</a>
+            <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
     </ul>
 </mat-toolbar>
