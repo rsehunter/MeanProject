@@ -1,21 +1,19 @@
 <div class="welcome-page">
-    <div class="text-box"><h1 class="heading-primary">
-                <span class ="heading-main">Louis's</span>
-                <span class ="heading-sub">photo journal</span>
-            </h1>
-            <a class="button" button mat-raised-button routerLink="/gallery" >Visit Gallery</a>
-
-        </div>
-        
-    <div class="box-container">
-        <div class="background-box background-img1"></div>
-        <div class="background-box background-img2"></div>
-        <div class="background-box background-img3"></div>
-        <div class="background-box  background-img4">
-        </div>
-        <div class="background-box background-img5 ">
-        </div>
+    <div class="text-box">
+        <h1 class="heading-primary">
+            <span class="heading-main">Louis's</span>
+            <span class="heading-sub">photo journal</span>
+        </h1>
+        <button mat-raised-button (click)="onClick()" >Visit Gallery</button>
     </div>
-    
-    <div class="box-container box-container2"></div>
+    <div class="clip" [@onClick]="currentState">
+        <div class="box-container">
+            <div class="background-box background-img1"></div>
+            <div class="background-box background-img2"></div>
+            <div class="background-box background-img3"></div>
+            <div class="background-box background-img4"></div>
+            <div class="background-box background-img5"></div>
+        </div>
+        <div class="box-container box-container2"></div>
+    </div>
 </div>
