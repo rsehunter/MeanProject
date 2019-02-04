@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from "@angular/core";
 import * as d3 from 'd3';
-import * as t from 'topojson';
 
 @Component({
     selector: 'map',

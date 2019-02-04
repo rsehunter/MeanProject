@@ -13,9 +13,10 @@ import { Photo } from '../photo.model';
 })
 export class PhotoListComponent implements OnInit {
 
+  public cols = 3;
   public photos: Photo[] = [];
   private photoSub: Subscription;
-  public cols = 3;
+  private isLoading = false;
   constructor(
     public postsService: PostsService,
     public dialog: MatDialog,
@@ -24,9 +25,11 @@ export class PhotoListComponent implements OnInit {
 
   ngOnInit() {
     this.postsService.getPhotos();
+    this.isLoading = true;
     this.photoSub = this.postsService.getPhotoUpdateListener()
       .subscribe((photos: Photo[]) => {
         this.photos = photos;
+        this.isLoading = false;
       })
   };
 

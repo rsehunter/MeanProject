@@ -12,10 +12,6 @@
   },
   "private": true,
   "dependencies": {
-    "d3": "5.7.0",
-    "d3-queue": "3.0.7",
-    "topojson": "3.0.2",
-    "@types/d3": "5.0.0",
     "@angular/animations": "^6.0.0",
     "@angular/cdk": "^6.0.0",
     "@angular/common": "^6.0.0",
@@ -27,12 +23,19 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
+    "@types/d3": "5.0.0",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",
+    "d3": "5.7.0",
+    "d3-queue": "3.0.7",
     "express": "^4.16.3",
     "mongoose": "^5.4.8",
+    "mongoose-unique-validator": "^2.0.2",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "bcrypt": "^2.0.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.2.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.1",

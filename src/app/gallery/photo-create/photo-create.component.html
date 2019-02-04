@@ -1,5 +1,6 @@
 <mat-card class="main">
-  <form (submit)="onAddPost(photoForm)" #photoForm="ngForm">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form *ngIf="!isLoading" (submit)="onAddPost(photoForm)" #photoForm="ngForm">
     <mat-form-field>
       <textarea
         matInput

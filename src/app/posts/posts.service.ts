@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Router } from "@angular/router";
 
-import { Post } from "./post.model";
 import { Photo } from "../gallery/photo.model";
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
@@ -11,42 +10,10 @@ const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
-  private posts: Post[] = [];
-  private postsUpdated = new Subject<Post[]>();
   private photos: Photo[] = [];
   private photosUpdated = new Subject<Photo[]>();
 
   constructor(private _http: HttpClient, private _router: Router) { }
-
-  getPosts() {
-    this._http
-      .get<{ message: string; posts: any }>(
-        BACKEND_URL + "/posts"
-      )
-      .pipe(map((postData) => {
-        return postData.posts.map(post => {
-          return {
-            title: post.title,
-            content: post.content,
-            id: post._id
-          };
-        });
-      }))
-      .subscribe(transformedPost => {
-        this.posts = transformedPost;
-        this.postsUpdated.next([...this.posts]);
-      });
-  }
-
-  deletePost(postId: string) {
-    this._http.delete<{ message: string }>(BACKEND_URL + "/posts/" + postId)
-      .subscribe(responseData => {
-        console.log(responseData.message, "deleted!");
-        const updatedPosts = this.posts.filter(post => post.id !== postId);
-        this.posts = updatedPosts;
-        this.postsUpdated.next([...this.posts]);
-      })
-  }
 
   deletePhoto(photoId: string) {
     this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
@@ -96,22 +63,6 @@ export class PostsService {
     return this.photosUpdated.asObservable();
   }
 
-  getPostUpdateListener() {
-    return this.postsUpdated.asObservable();
-  }
-
-  addPost(title: string, content: string) {
-    const post: Post = { id: null, title: title, content: content };
-    this._http
-      .post<{ message: string, postId: string }>(BACKEND_URL + "/posts", post)
-      .subscribe(responseData => {
-        console.log(responseData.message);
-        post.id = responseData.postId;
-        this.posts.push(post);
-        this.postsUpdated.next([...this.posts]);
-      });
-  }
-
   createPhoto(caption: string, location: string, url: string) {
     const photo: Photo = { id: null, caption: caption, location: location, url: url };
     this._http
@@ -136,4 +87,5 @@ export class PostsService {
         this._router.navigate(["/gallery"]);
       });
   }
+  
 }
