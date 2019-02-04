@@ -16,6 +16,9 @@ ul {
 .spacer {
   flex: 1 1 auto;
 }
+.absolut-position{
+  position:absolute;
+}
 
 mat-toolbar{
   z-index: -1;;

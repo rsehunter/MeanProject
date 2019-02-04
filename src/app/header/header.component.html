@@ -1,4 +1,5 @@
-<mat-toolbar color="primary" *ngIf="router!=='/'">
+<mat-toolbar color="primary" [ngClass]="{'absolut-position' : router==='/'}">
+    <!-- <mat-toolbar color="primary" *ngIf=""> -->
     <span>
         <a routerLink="/">Louis's Photo Journal</a>
     </span>

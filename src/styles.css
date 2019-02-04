@@ -16,3 +16,6 @@ body { margin: 0; }
 
   height: auto !important;
 }
+html {
+  overflow-y: scroll;
+}
