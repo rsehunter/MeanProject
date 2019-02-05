@@ -1,18 +1,22 @@
-<mat-card class="main">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form #loginForm="ngForm" *ngIf="!isLoading">
-    <mat-form-field>
-      <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
-      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
-      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
-    </mat-form-field>
-    <div class="flex-container">
-      <div class="flex-spacer"> </div>
-      <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onLogin(loginForm)" *ngIf="!isLoading">Login</button>
-      <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onSignup(loginForm)" *ngIf="!isLoading">Signup</button>
-    </div>
-  </form>
-</mat-card>
+<div class="flex">
+  <span class="spacer1"></span>
+  <mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form #loginForm="ngForm" *ngIf="!isLoading">
+      <mat-form-field>
+        <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+      <div class="flex-container">
+        <div class="flex-spacer"> </div>
+        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onLogin(loginForm)" *ngIf="!isLoading">Login</button>
+        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onSignup(loginForm)" *ngIf="!isLoading">Signup</button>
+      </div>
+    </form>
+  </mat-card>
+  <span class="spacer2"></span>
+</div>

@@ -2,13 +2,17 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title class='panel-title'>
-          <mat-icon>map</mat-icon>
-          <p>{{title}}</p>
+        <mat-icon>map</mat-icon>
+        <p>{{title}}</p>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <map (locationSelected)="onLocationSelected($event)"></map>
-
+    <div class='flex'>
+      <span>Showing {{displayPhotos.length}} items for Location: {{title === "All" ? '(All)' : title }}</span>
+      <span class="spacer"></span>
+      <button mat-raised-button (click)="onSelectAll()">Select All</button>
+    </div>
   </mat-expansion-panel>
 
-  <photo-list></photo-list>
+  <photo-list [list]="displayPhotos"></photo-list>
 </mat-card>

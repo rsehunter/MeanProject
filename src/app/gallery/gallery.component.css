@@ -36,3 +36,13 @@ mat-expansion-panel{
   margin: 0px 5px;
 }
 
+.flex{
+  display:flex; 
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+

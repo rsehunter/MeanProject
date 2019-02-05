@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Photo } from '../photo.model';
-import { PostsService } from "../../posts/posts.service";
-import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
+
+import { Photo } from '../photo.model';
+import { PhotosService } from "../photos.service";
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'photo-dialog',
@@ -16,7 +17,7 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<PhotoDialogComponent>,
-    public photoService: PostsService,
+    public photoService: PhotosService,
     private authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public photo: Photo, ) { }
 

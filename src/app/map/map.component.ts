@@ -5,7 +5,7 @@ import * as d3 from 'd3';
     selector: 'map',
     template: `
       <div class='tooltip' #tooltip></div>
-      <svg #statesvg width="960" height="600"></svg>
+      <svg #statesvg width="800" height="500"></svg>
     `,
     styleUrls: ["./map.component.css"]
 })
@@ -107,8 +107,8 @@ export class MapComponent implements OnInit {
             height = +svg.attr("height");
 
         var zoom = d3.zoom()
-            .scaleExtent([1, 40])
-            .translateExtent([[-100, -100], [width + 90, height + 100]])
+            .scaleExtent([0, 40])
+            .translateExtent([[-50, -50], [width + 190, height + 120]])
             .on("zoom", zoomed);
 
         var view = d3.select(this.statesvgElt.nativeElement).selectAll(".state")

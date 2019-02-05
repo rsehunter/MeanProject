@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { Photo } from '../photo.model';
 
-import { PostsService } from "../../posts/posts.service";
+import { Photo } from '../photo.model';
+import { PhotosService } from "../photos.service";
 
 @Component({
   selector: "app-photo-create",
@@ -14,14 +14,14 @@ export class PhotoCreateComponent implements OnInit {
   enteredTitle = "";
   enteredContent = "";
   imageUrl = ""
-  photos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  photos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16];
   photo: Photo;
   isLoading = false;
 
   private mode = "create";
 
   constructor(
-    public photosService: PostsService,
+    public photosService: PhotosService,
     public _route: ActivatedRoute
   ) { }
 

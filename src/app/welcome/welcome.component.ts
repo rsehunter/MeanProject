@@ -12,26 +12,22 @@ import { Router } from "@angular/router";
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
-  animations: [
-    trigger('onClick', [
-      state('final', style({
-        clipPath: 'polygon(0 0, 100% 0, 100% -20000%, 0 100%)'
-      })),
-      transition('initial=>final', animate('15000ms')),
-    ]),
-    ]
-
+  animations: [trigger('onClick', [
+    state('final', style({
+      clipPath: 'polygon(0 0, 100% 0, 100% -20000%, 0 100%)'
+    })),
+    transition('initial=>final', animate('15000ms'))])]
 })
 export class WelcomeComponent {
   private currentState = "initial";
-  constructor(public _router:Router){
+  constructor(public _router: Router) {
   }
 
-  onClick(): void{
+  onClick(): void {
     this.currentState = "final";
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this._router.navigate(["/gallery"]);
-    },500)
+    }, 500)
   }
 }

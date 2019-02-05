@@ -48,6 +48,7 @@ export class AuthService {
         const now = new Date();
         const expirationDate = new Date(
           now.getTime() + 3600 *24 * 1000
+          // now.getTime() + 10 * 1000
         );
         this.saveAuthData(token, expirationDate);
       }

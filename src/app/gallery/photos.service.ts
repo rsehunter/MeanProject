@@ -10,13 +10,13 @@ import { Photo } from "../gallery/photo.model";
 const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: "root" })
-export class PostsService {
+export class PhotosService {
   private photos: Photo[] = [];
   private photosUpdated = new Subject<Photo[]>();
 
   constructor(
-    private _http: HttpClient, 
-    private _router: Router  ) { }
+    private _http: HttpClient,
+    private _router: Router) { }
 
   deletePhoto(photoId: string) {
     this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
@@ -84,11 +84,11 @@ export class PostsService {
     console.log(photo);
 
     this._http
-      .put(BACKEND_URL + "/photos/"+ id, photo)
+      .put(BACKEND_URL + "/photos/" + id, photo)
       .subscribe(responseData => {
         console.log(responseData);
         this._router.navigate(["/gallery"]);
       });
   }
-  
+
 }
