@@ -9,11 +9,12 @@
         <li>
             <a mat-button routerLink="/gallery" routerLinkActive="mat-accent">Gallery</a>
         </li>
-        <li>
+        <li *ngIf="isAuth">
             <a mat-button routerLink="/createphoto" routerLinkActive="mat-accent">CreatePhoto</a>
         </li>
-        <li>
+        <li *ngIf="!isAuth">
             <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
+        <a mat-button *ngIf="isAuth" (click)="onLogout()">Logout</a>
     </ul>
 </mat-toolbar>

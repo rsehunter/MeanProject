@@ -2,8 +2,9 @@ const express = require("express");
 const Photo = require('../models/photo');
 
 const router = express.Router();
+const checkAuth = require("../middleware/check-auth");
 
-router.post("", (req, res, next) => {
+router.post("", checkAuth, (req, res, next) => {
   const photo = new Photo({
     caption: req.body.caption,
     location: req.body.location,
@@ -17,7 +18,7 @@ router.post("", (req, res, next) => {
   })
 })
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", checkAuth, (req, res, next) => {
   Photo.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({
@@ -26,7 +27,7 @@ router.delete("/:id", (req, res, next) => {
   })
 });
 
-router.put("/:photoId", (req, res, next) => {
+router.put("/:photoId", checkAuth, (req, res, next) => {
   console.log(req.params.photoId);
 
   const photo = new Photo({

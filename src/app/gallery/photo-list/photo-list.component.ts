@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from "../../posts/posts.service";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { PhotoDialogComponent } from '../photo-dialog/photo-dialog.component';
 import { Overlay } from '@angular/cdk/overlay';
+
 import { Photo } from '../photo.model';
+import { PhotoDialogComponent } from '../photo-dialog/photo-dialog.component';
+import { PostsService } from "../../posts/posts.service";
 
 @Component({
   selector: 'photo-list',

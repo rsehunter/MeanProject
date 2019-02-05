@@ -14,11 +14,11 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">
+                <button mat-menu-item *ngIf="isAuth" (click)="onCloseClick()" [routerLink]="['/edit', photo.id]">
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                 </button>
-                <button mat-menu-item (click)="onDeleteClick(photo.id)">
+                <button mat-menu-item *ngIf="isAuth" (click)="onDeleteClick(photo.id)">
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>

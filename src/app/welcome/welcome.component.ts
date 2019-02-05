@@ -1,4 +1,4 @@
-import { Component, HostBinding  } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   trigger,
   state,
@@ -23,10 +23,10 @@ import { Router } from "@angular/router";
 
 })
 export class WelcomeComponent {
-  constructor(public _router:Router){
-
-  }
   private currentState = "initial";
+  constructor(public _router:Router){
+  }
+
   onClick(): void{
     this.currentState = "final";
 

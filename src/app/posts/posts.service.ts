@@ -2,10 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Router } from "@angular/router";
-
-import { Photo } from "../gallery/photo.model";
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+
+import { Photo } from "../gallery/photo.model";
+
 const BACKEND_URL = environment.apiUrl;
 
 @Injectable({ providedIn: "root" })
@@ -13,7 +14,9 @@ export class PostsService {
   private photos: Photo[] = [];
   private photosUpdated = new Subject<Photo[]>();
 
-  constructor(private _http: HttpClient, private _router: Router) { }
+  constructor(
+    private _http: HttpClient, 
+    private _router: Router  ) { }
 
   deletePhoto(photoId: string) {
     this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
