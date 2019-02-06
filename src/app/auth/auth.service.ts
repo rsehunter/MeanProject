@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from '../../environments/environment';
 import { AuthData } from './auth-data';
 import { MatSnackBar } from '@angular/material';
-import { SnakeBarComponent} from './login/snack-bar.component';
+import { SnackBarComponent} from './login/snack-bar.component';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -100,7 +100,7 @@ export class AuthService {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.openFromComponent(SnakeBarComponent, {
+    this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 500,
       data: message
     });

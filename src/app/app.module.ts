@@ -11,7 +11,7 @@ import { PhotoDialogComponent } from "./gallery/photo-dialog/photo-dialog.compon
 import { AppRoutingModule } from './app-rounting.module'
 import { AngularMaterialModule } from "./angular-material.module";
 import { HeaderComponent } from "./header/header.component";
-import { SnakeBarComponent } from './auth/login/snack-bar.component';
+import { SnackBarComponent } from './auth/login/snack-bar.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     WelcomeComponent,
     PhotoDialogComponent,
     HeaderComponent,
-    SnakeBarComponent
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     AuthModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  entryComponents: [PhotoDialogComponent, SnakeBarComponent],
+  entryComponents: [PhotoDialogComponent, SnackBarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

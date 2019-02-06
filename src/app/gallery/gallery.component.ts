@@ -13,7 +13,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   photos: Photo[] = [];
   displayPhotos: Photo[] = [];
   photoSub: Subscription;
-  private isLoading = false;
+  public isLoading = false;
   public title = "All";
 
   constructor(private photoService: PhotosService) { }

@@ -1,8 +1,7 @@
 <div class="flex">
   <span class="spacer1"></span>
   <mat-card>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form #loginForm="ngForm" *ngIf="!isLoading">
+    <form #loginForm="ngForm">
       <mat-form-field>
         <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
@@ -13,8 +12,8 @@
       </mat-form-field>
       <div class="flex-container">
         <div class="flex-spacer"> </div>
-        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onLogin(loginForm)" *ngIf="!isLoading">Login</button>
-        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onSignup(loginForm)" *ngIf="!isLoading">Signup</button>
+        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onLogin(loginForm)">Login</button>
+        <button type="button" mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="onSignup(loginForm)">Signup</button>
       </div>
     </form>
   </mat-card>

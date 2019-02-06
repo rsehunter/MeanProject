@@ -31,7 +31,7 @@ import {
 export class HeaderComponent implements OnInit {
   router: string;
   isAuth = false;
-  private currentState = "left";
+  public currentState = "left";
 
   private urlSub: Subscription;
   private authListenserSubs: Subscription;

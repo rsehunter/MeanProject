@@ -4,8 +4,10 @@ import { Subject } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 import { Photo } from "../gallery/photo.model";
+import { SnackBarComponent} from '../auth/login/snack-bar.component';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -16,7 +18,9 @@ export class PhotosService {
 
   constructor(
     private _http: HttpClient,
-    private _router: Router) { }
+    private _router: Router,
+    public snackBar: MatSnackBar
+  ) { }
 
   deletePhoto(photoId: string) {
     this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
@@ -24,6 +28,7 @@ export class PhotosService {
         const updatedPhotos = this.photos.filter(photo => photo.id !== photoId);
         this.photos = updatedPhotos;
         this.photosUpdated.next([...this.photos]);
+        this.openSnackBar(responseData.message);
       })
   }
 
@@ -71,6 +76,7 @@ export class PhotosService {
         photo.id = responseData.photoId;
         this.photos.push(photo);
         this.photosUpdated.next([...this.photos]);
+        this.openSnackBar(responseData.message);
         this._router.navigate(["/gallery"]);
       });
   }
@@ -78,11 +84,20 @@ export class PhotosService {
   updatePhoto(id: string, caption: string, location: string, url: string) {
     const photo: Photo = { id: id, caption: caption, location: location, url: url };
 
-    this._http
-      .put(BACKEND_URL + "/photos/" + id, photo)
+    this._http.put<{message: any}>
+      (BACKEND_URL + "/photos/" + id, photo)
       .subscribe(responseData => {
         this._router.navigate(["/gallery"]);
+        this.openSnackBar(responseData.message);
       });
   }
+
+  openSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: message,
+      duration: 500
+    });
+  }
+
 
 }

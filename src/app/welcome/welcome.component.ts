@@ -19,7 +19,7 @@ import { Router } from "@angular/router";
     transition('initial=>final', animate('15000ms'))])]
 })
 export class WelcomeComponent {
-  private currentState = "initial";
+  public currentState = "initial";
   constructor(public _router: Router) {
   }
 

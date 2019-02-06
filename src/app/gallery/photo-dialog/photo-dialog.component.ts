@@ -9,12 +9,12 @@ import { AuthService } from '../../auth/auth.service';
 @Component({
   selector: 'photo-dialog',
   templateUrl: 'photo-dialog.component.html',
-  styleUrls: ['./photo-dialog.component.css']
+  styleUrls: ['./photo-dialog.component.scss']
 })
 export class PhotoDialogComponent implements OnInit, OnDestroy {
   private authListenserSubs: Subscription;
-  private isAuth = false;
-
+  isAuth = false;
+  liked : boolean;
   constructor(
     public dialogRef: MatDialogRef<PhotoDialogComponent>,
     public photoService: PhotosService,
@@ -27,6 +27,11 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
 
   onDeleteClick(photoId: string): void {
     this.photoService.deletePhoto(photoId);
+    this.dialogRef.close();
+  }
+
+  onLikeClick() {
+    this.liked = !this.liked;
   }
 
   convertUrl(url: string): string {
@@ -34,6 +39,7 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.liked=false;
     this.isAuth = this.authService.getAuthStatus();
     this.authListenserSubs = this.authService
       .getAuthenStatusListener().subscribe(result => {

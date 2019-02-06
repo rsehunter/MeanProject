@@ -22,7 +22,7 @@ router.delete("/:id", checkAuth, (req, res, next) => {
   Photo.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({
-      message: req.params.id
+      message: 'Photo deleted!'
     })
   })
 });
@@ -40,7 +40,7 @@ router.put("/:photoId", checkAuth, (req, res, next) => {
   Photo.updateOne({ _id: req.params.photoId }, photo)
     .then((result) => {
       console.log(result);
-      res.status(200).json({ message: "Update successful!" });
+      res.status(200).json({ message: "Photo updated!" });
     }).catch((error) => {
       console.log(error);
     })
@@ -62,7 +62,7 @@ router.get("", (req, res, next) => {
     .then((photos) => {
       console.log(photos);
       res.status(200).json({
-        message: "Posts fetched successfully!",
+        message: "Photos fetched successfully!",
         photos: photos
       });
     })

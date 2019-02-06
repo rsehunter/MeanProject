@@ -6,7 +6,7 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material';
     template: `<span class="snack-bar">{{ data }}</span>`,
     styles: [`.snack-bar { font-family: Lato; width:30%;}`],
 })
-export class SnakeBarComponent {
+export class SnackBarComponent {
     constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
 
 }

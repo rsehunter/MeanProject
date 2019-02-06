@@ -13,6 +13,6 @@
       <button mat-raised-button (click)="onSelectAll()">Select All</button>
     </div>
   </mat-expansion-panel>
-
-  <photo-list [list]="displayPhotos"></photo-list>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <photo-list [list]="displayPhotos" *ngIf="!isLoading"></photo-list>
 </mat-card>
