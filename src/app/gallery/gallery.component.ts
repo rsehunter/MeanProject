@@ -14,6 +14,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   displayPhotos: Photo[] = [];
   photoSub: Subscription;
   private isLoading = false;
+  public title = "All";
 
   constructor(private photoService: PhotosService) { }
 
@@ -24,7 +25,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.photoSub = this.photoService.getPhotoUpdateListener().subscribe(
       photos => {
         this.photos = photos;
-        this.displayPhotos = photos;
+        if(this.title!=="All"){
+          this.displayPhotos = this.photos.filter(photo => photo.location === this.title);
+        }else{
+          this.displayPhotos = this.photos;
+        }
         this.isLoading = false;
       }
     );
@@ -32,11 +37,14 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.photoSub.unsubscribe();
   }
-  public title = "All";
 
   onLocationSelected(location: string) {
     this.title = location;
-    this.displayPhotos = this.photos.filter(photo => photo.location === location);
+    if(this.title!=="All"){
+      this.displayPhotos = this.photos.filter(photo => photo.location === this.title);
+    }else{
+      this.displayPhotos = this.photos;
+    }
     console.log(this.displayPhotos);
   }
   onSelectAll() {

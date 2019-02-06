@@ -1,6 +1,7 @@
 mat-card{
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 mat-form-field,
@@ -18,4 +19,30 @@ textarea {
 
 mat-spinner {
   margin: auto;
+}
+
+.dialog-img {
+  width:100%;
+  padding-bottom: 20px;
+}
+
+.image-preview{
+  
+  display: inline-block;
+  max-width: 50vw;
+  width: auto;
+  height: auto;  
+}
+.img-placeholder{
+  width:200px;
+  height:200px;
+  background:lightgrey;
+  margin-bottom: 10px;
+}
+.flex-container{
+  display:flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

@@ -23,13 +23,10 @@ export class PhotoListComponent {
   openDialog(photo: Photo): void {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
 
-    const dialogRef = this.dialog.open(PhotoDialogComponent, {
+    this.dialog.open(PhotoDialogComponent, {
       data: photo,
       scrollStrategy,
       autoFocus: false
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

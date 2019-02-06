@@ -21,7 +21,6 @@ export class PhotosService {
   deletePhoto(photoId: string) {
     this._http.delete<{ message: string }>(BACKEND_URL + "/photos/" + photoId)
       .subscribe(responseData => {
-        console.log(responseData.message, "deleted!");
         const updatedPhotos = this.photos.filter(photo => photo.id !== photoId);
         this.photos = updatedPhotos;
         this.photosUpdated.next([...this.photos]);
@@ -46,12 +45,10 @@ export class PhotosService {
       .subscribe(photoData => {
         this.photos = photoData.photos;
         this.photosUpdated.next([...this.photos]);
-        console.log(this.photos)
       });
   }
 
   getPhoto(photoid: string) {
-    console.log(photoid);
     return this._http
       .get<{
         caption: string,
@@ -71,7 +68,6 @@ export class PhotosService {
     this._http
       .post<{ message: string, photoId: string }>(BACKEND_URL + "/photos", photo)
       .subscribe(responseData => {
-        console.log(responseData.message);
         photo.id = responseData.photoId;
         this.photos.push(photo);
         this.photosUpdated.next([...this.photos]);
@@ -81,12 +77,10 @@ export class PhotosService {
 
   updatePhoto(id: string, caption: string, location: string, url: string) {
     const photo: Photo = { id: id, caption: caption, location: location, url: url };
-    console.log(photo);
 
     this._http
       .put(BACKEND_URL + "/photos/" + id, photo)
       .subscribe(responseData => {
-        console.log(responseData);
         this._router.navigate(["/gallery"]);
       });
   }

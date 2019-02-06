@@ -27,7 +27,6 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
 
   onDeleteClick(photoId: string): void {
     this.photoService.deletePhoto(photoId);
-    this.dialogRef.close();
   }
 
   convertUrl(url: string): string {
@@ -35,18 +34,14 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.isAuth);
     this.isAuth = this.authService.getAuthStatus();
     this.authListenserSubs = this.authService
       .getAuthenStatusListener().subscribe(result => {
         this.isAuth = result;
-        console.log(this.isAuth);
       });
   }
 
   ngOnDestroy() {
-    console.log(this.isAuth);
-
     this.authListenserSubs.unsubscribe();
   }
 }

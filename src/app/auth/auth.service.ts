@@ -26,7 +26,6 @@ export class AuthService {
     const authData: AuthData = {email: email, password: password};
     this._http.post<{message: string}>(BACKEND_URL + "/user/signup", authData).subscribe(
       (response) => {
-        console.log(response);
         this.openSnackBar(response.message)
       }
     );
@@ -36,7 +35,6 @@ export class AuthService {
     const authData: AuthData = {email: email, password: password};
     this._http.post<{message: any, token: string}>(BACKEND_URL + "/user/login", authData).subscribe(
       response => {
-        console.log(response);
         const token= response.token;;
         this.token = token;
         this.openSnackBar(response.message);

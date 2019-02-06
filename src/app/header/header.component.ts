@@ -42,8 +42,6 @@ export class HeaderComponent implements OnInit {
       if (this.router != this._router.url) {
         this.router = this._router.url
         if (this.router !== '/') {
-          console.log(this.router, this.currentState)
-
           this.currentState = "noraml";
         }
       }
@@ -62,8 +60,6 @@ export class HeaderComponent implements OnInit {
   onClick() {
     this.currentState = "left";
     this._router.navigate(["/"]);
-    console.log(this.router, this.currentState)
-
   }
   onLogout() {
     this.authService.logoutUser();

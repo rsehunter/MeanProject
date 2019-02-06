@@ -14,7 +14,7 @@ export class PhotoCreateComponent implements OnInit {
   enteredTitle = "";
   enteredContent = "";
   imageUrl = ""
-  photos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16];
+  photos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16, 17];
   photo: Photo;
   isLoading = false;
 
@@ -53,7 +53,6 @@ export class PhotoCreateComponent implements OnInit {
   }
   onImagePicked() {
     this.imageUrl = "./assets/" + this.photo.url + ".jpg";
-    console.log(this.imageUrl);
   }
   onLocationSelected(location: string){
     this.photo.location = location;
