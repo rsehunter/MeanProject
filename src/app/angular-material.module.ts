@@ -13,6 +13,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatSnackBarModule,
+  MatTooltipModule,
 
 } from "@angular/material";
 
@@ -31,6 +32,7 @@ import {
     MatIconModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatTooltipModule,
 
   ]
 })

@@ -34,7 +34,8 @@ router.put("/:photoId", checkAuth, (req, res, next) => {
     _id: req.body.id,
     caption: req.body.caption,
     location: req.body.location,
-    url: req.body.url
+    url: req.body.url,
+    liked: req.body.liked
   });
 
   Photo.updateOne({ _id: req.params.photoId }, photo)
@@ -45,6 +46,21 @@ router.put("/:photoId", checkAuth, (req, res, next) => {
       console.log(error);
     })
 });
+
+router.put("/liked/:photoId", checkAuth, (req, res, next) => {
+  console.log(req.params.photoId);
+  console.log(req.body);
+  
+  Photo.updateOne({ _id: req.params.photoId }, {$set:{'liked': req.body} })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ message: "Photo liked!" });
+
+    }).catch((error) => {
+      res.status(500).json({ message: "something wrong!" });
+    })
+});
+
 
 router.get("/:photoId", (req, res, next) => {
   console.log(req.params.photoId);

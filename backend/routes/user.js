@@ -60,6 +60,7 @@ router.post("/login", (req, res, next) => {
       );
       res.status(201).json({
         token: token,
+        userId: fetchedUser._id,
         message: 'User logged in!',
       })
     })

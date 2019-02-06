@@ -2,7 +2,12 @@
     <mat-card>
         <img class="dialog-img" src={{convertUrl(photo.url)}} />
         <div class="flex-container">
-                <button class= 'like-button' mat-fab [ngClass]="{'unliked' : !liked}" color='warn' (click)="onLikeClick()">
+                <button 
+                class= 'like-button' 
+                mat-fab [ngClass]="{'unliked' : !liked}" 
+                color='warn' 
+                matTooltip="{{tooltipText}}"
+                (click)="onLikeClick(photo.id)">
                     <mat-icon>favorite</mat-icon>
 
                 </button>

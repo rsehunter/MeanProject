@@ -36,7 +36,8 @@ export class PhotoCreateComponent implements OnInit {
             id: photoData._id,
             caption: photoData.caption,
             location: photoData.location,
-            url: photoData.url
+            url: photoData.url,
+            liked: photoData.liked
           }
           this.imageUrl = "./assets/" + photoData.url + ".jpg";
         })
@@ -46,7 +47,8 @@ export class PhotoCreateComponent implements OnInit {
           id: null,
           caption: null,
           location: null,
-          url: null
+          url: null,
+          liked: []
         }
       }
     })
@@ -71,7 +73,9 @@ export class PhotoCreateComponent implements OnInit {
         this.photo.id,
         form.value.caption, 
         form.value.location, 
-        form.value.url);  
+        form.value.url,
+        this.photo.liked,
+      );  
     };
     form.resetForm();
     this.imageUrl = "";

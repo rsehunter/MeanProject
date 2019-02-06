@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 
 import { Photo } from "../gallery/photo.model";
-import { SnackBarComponent} from '../auth/login/snack-bar.component';
+import { SnackBarComponent } from '../auth/login/snack-bar.component';
 
 const BACKEND_URL = environment.apiUrl;
 
@@ -43,6 +43,7 @@ export class PhotosService {
               location: photo.location,
               url: photo.url,
               id: photo._id,
+              liked: photo.liked
             };
           })
         }
@@ -59,7 +60,8 @@ export class PhotosService {
         caption: string,
         location: string,
         url: string,
-        _id: string
+        _id: string,
+        liked: string[]
       }>(BACKEND_URL + "/photos/" + photoid);
   }
 
@@ -81,15 +83,19 @@ export class PhotosService {
       });
   }
 
-  updatePhoto(id: string, caption: string, location: string, url: string) {
-    const photo: Photo = { id: id, caption: caption, location: location, url: url };
+  updatePhoto(id: string, caption: string, location: string, url: string, liked?: string[]) {
+    const photo: Photo = { id: id, caption: caption, location: location, url: url, liked: liked };
 
-    this._http.put<{message: any}>
+    this._http.put<{ message: any }>
       (BACKEND_URL + "/photos/" + id, photo)
       .subscribe(responseData => {
         this._router.navigate(["/gallery"]);
         this.openSnackBar(responseData.message);
       });
+  }
+
+  likedPhoto(photoid: string, liked: string[]) {
+      return this._http.put<{ message: any }>(BACKEND_URL + "/photos/liked/" + photoid, liked);
   }
 
   openSnackBar(message: string) {

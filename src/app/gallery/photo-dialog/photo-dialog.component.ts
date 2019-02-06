@@ -15,6 +15,7 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
   private authListenserSubs: Subscription;
   isAuth = false;
   liked : boolean;
+  tooltipText: string;
   constructor(
     public dialogRef: MatDialogRef<PhotoDialogComponent>,
     public photoService: PhotosService,
@@ -30,8 +31,23 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
   }
 
-  onLikeClick() {
-    this.liked = !this.liked;
+  onLikeClick(photoId: string) {
+    if(this.photo.liked.includes(this.authService.getUserId())){
+      this.photo.liked = this.photo.liked.filter((id) => id!==this.authService.getUserId())
+    }
+    else{
+      this.photo.liked.push(this.authService.getUserId());
+    }
+
+    this.photoService.likedPhoto(photoId, this.photo.liked).subscribe(
+      responseData => {
+      this.liked = this.photo.liked.includes(this.authService.getUserId());
+      this.tooltipText = `${this.photo.liked.length} like${(this.photo.liked.length>1? 's':'')}`;
+    },
+  error =>{
+    console.log(error.error.message);
+    this.authService.openSnackBar(error.error.message);
+  });
   }
 
   convertUrl(url: string): string {
@@ -39,12 +55,13 @@ export class PhotoDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.liked=false;
     this.isAuth = this.authService.getAuthStatus();
     this.authListenserSubs = this.authService
       .getAuthenStatusListener().subscribe(result => {
         this.isAuth = result;
       });
+    this.liked = this.photo.liked.includes(this.authService.getUserId());
+    this.tooltipText = `${this.photo.liked.length} like${(this.photo.liked.length!=1? 's':'')}`;
   }
 
   ngOnDestroy() {
